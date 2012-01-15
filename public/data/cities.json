@@ -2,38 +2,42 @@
     "sanfrancisco-ca": {
       "name": "San Francisco, CA",
       "jurisdiction_id": "sfgov.org",
-      "servers": {
-        "Test": {
+      "servers": [
+        {
+          "name": "Test",
           "protocol": "https",
           "base": "open311.sfgov.org",
           "path": "/dev/V2"
         },
-        "Production": {
+        {
+          "name": "Production",
           "protocol": "https",
           "base": "open311.sfgov.org",
           "path": "/dev"
         }
-      },
-      "format": ["xml"],
+      ],
+      "formats": ["xml"],
       "auth": "key",
       "keyParam": "key"
     },
     "boston-ma": {
       "name": "Boston, MA",
       "jurisdiction_id": "cityofboston.gov",
-      "servers": {
-        "Test": {
+      "servers": [
+        {
+          "name": "Test", 
           "protocol": "https",
           "base": "mayors24.cityofboston.gov:6443",
           "path": "/open311/v2"
         },
-        "Production": {
+        {
+          "name": "Production",
           "protocol": "https",
           "base": "mayors24.cityofboston.gov",
           "path": "/open311/v2"
         }
-      },
-      "format": ["xml", "json", "html"],
+      ],
+      "formats": ["xml", "json", "html"],
       "auth": "key",
       "keyParam": "key"
     }
