@@ -617,6 +617,12 @@ app.dynamicHelpers({
             var data = fs.readFileSync('public/data/' + req.params.api + '.json');
             return JSON.parse(data);
         }
+    },
+    citiesConfig: function(req, res) {
+        if (req.params.api) {
+            var data = fs.readFileSync('public/data/cities.json');
+            return JSON.parse(data);
+        }
     }
 })
 

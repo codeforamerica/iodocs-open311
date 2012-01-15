@@ -4,6 +4,30 @@ h1=apiInfo.name
 - else
     - var authed =''
 
+form#cities
+    table
+        thead
+            tr
+                th Select
+                th City
+                th Server
+                th Format
+        tbody
+            - each city in citiesConfig
+                tr
+                    td  
+                        input(type='radio', name='city')
+
+                    td
+                        #{city.name}
+                    td
+                         select(name='server')
+                             - each server in city.servers
+                                    option(value=server.name) #{server.name}
+                     td
+                         select(name='format')
+                             - each format in city.formats
+                                    option(value=format) #{format}                       
 
 form#credentials
     input(type='hidden', name='apiName', value=apiName)
