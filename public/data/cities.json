@@ -40,5 +40,20 @@
       "formats": ["xml", "json", "html"],
       "auth": "key",
       "keyParam": "key"
+    },
+    "codeforamerica": {
+      "name": "Code for America",
+      "jurisdiction_id": "codeforamerica.org",
+      "servers": [
+        {
+          "name": "Play", 
+          "protocol": "http",
+          "base": "cfa311.herokuapp.com",
+          "path": ""
+        }
+      ],
+      "formats": ["xml", "json"],
+      "auth": "key",
+      "keyParam": "key"
     }
 }
