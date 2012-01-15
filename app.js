@@ -80,12 +80,19 @@ fs.readFile('public/data/apiconfig.json', 'utf-8', function(err, data) {
 
 var app = module.exports = express.createServer();
 
+/**
+ * Setup Heroku Session Variables
+ */
 if (process.env.REDISTOGO_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
     config.redis.host = rtg.hostname;
     config.redis.port = rtg.port;
     config.redis.password = rtg.auth.split(":")[1];
 }
+if (process.env.SESSION_SECRET) {
+  config.sessionSecret = process.env.SESSION_SECRET;
+}
+
 
 app.configure(function() {
     app.set('views', __dirname + '/views');

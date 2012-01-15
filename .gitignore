@@ -1,6 +1,5 @@
 .DS_Store
 dump.rdb
 node_modules/*
-config.json
 logs/*
 pids/*
