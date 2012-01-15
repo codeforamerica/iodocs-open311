@@ -1,0 +1,245 @@
+{
+   "endpoints":[
+      {
+         "name":"GeoReportv2",
+         "methods":[
+            {
+               "MethodName":"services",
+               "Synopsis":"Provides a list of acceptable 311 service request types and their associated service codes. These request types can be unique to the city/jurisdiction.",
+               "HTTPMethod":"GET",
+               "URI":"/services.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                  }
+               ]
+            },
+            {
+               "MethodName":"service definition",
+               "Synopsis":"Define attributes associated with a service code. These attributes can be unique to the city/jurisdiction. This call is only necessary if the Service selected has metadata set as true from the GET Services response.",
+               "HTTPMethod":"GET",
+               "URI":"/services/:service_code.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"service_code",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"the service_code for which you are seeking additional information"
+                  },
+                  {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                  }
+               ]
+            },
+            {
+               "MethodName":"service request",
+               "Synopsis":"Create service requests",
+               "HTTPMethod":"POST",
+               "URI":"requests.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"service_code",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"the service_code for which you are making a request"
+                 },
+                 {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                 },
+                 {
+                     "Name":"lat",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"longitude using the (WGS84) projection"
+                 },
+                 {
+                     "Name":"long",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"longitude using the (WGS84) projection"
+                 },                  
+                 {
+                     "Name":"address_string",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Human entered address or description of location. This should be written from most specific to most general geographic unit, eg address number or cross streets, street name, neighborhood/district, city/town/village, county, postal code. This is required if no lat/lon is provided."
+                  },   
+                  {
+                     "Name":"address_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The internal address ID used by a jurisdictions master address repository or other addressing system. Only required if no lat/long or address_string is provided."
+                  },
+                  {
+                     "Name":"email",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The email address of the person submitting the request."
+                  },
+                  {
+                     "Name":"device_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The unique device ID of the device submitting the request. This is usually only used for mobile devices. For example, Android devices use TelephonyManager.getDeviceId() and iPhone's use [UIDevice currentDevice].uniqueIdentifier."
+                  },
+                  {
+                     "Name":"account_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The unique ID for the user account of the person submitting the request"
+                  },
+                  {
+                     "Name":"first_name",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The given name of the person submitting the request"
+                  }, 
+                  {
+                     "Name":"last_name",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The family name of the person submitting the request"
+                  },
+                  {
+                     "Name":"phone",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The phone number of the person submitting the request"
+                  },
+                  {
+                     "Name":"description",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A full description of the request or report being submitted. This may contain line breaks, but not html or code. Otherwise, this is free form text limited to 4,000 characters."
+                  },
+                  {
+                     "Name":"media_url",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"A URL to media associated with the request, eg an image. A convention for parsing media from this URL has yet to be established, so currently it will be done on a case by case basis. For example, if a jurisdiction accepts photos submitted via Twitpic.com, then clients can parse the page at the Twitpic URL for the image given the conventions of Twitpic.com. This could also be a URL to a media RSS feed where the clients can parse for media in a more structured way."
+                  }    
+               ]
+            },
+            {
+               "MethodName":"service requests",
+               "Synopsis":"Query the current status of multiple requests",
+               "HTTPMethod":"GET",
+               "URI":"/requests.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                  },
+                  {
+                     "Name":"service_code",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":" Specify the service type by calling the unique ID of the service_code. This defaults to all service codes when not declared; can be declared multiple times, comma delimited"
+                  },
+                  {
+                     "Name":"start_date",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"datetime",
+                     "Description": "Earliest datetime to include in search. When provided with end_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days. When not specified, the range defaults to most recent 90 days. Must use w3 format, eg 2010-01-01T00:00:00Z."
+                  },
+                  {
+                     "Name":"end_date",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"datetime",
+                     "Description": "Latest datetime to include in search. When provided with start_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days. When not specified, the range defaults to most recent 90 days. Must use w3 format, eg 2010-01-01T00:00:00Z."
+                  },
+                  {
+                     "Name":"status",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Allows one to search for requests which have a specific status. This defaults to all statuses; can be declared multiple times, comma delimited. E.g. \"open\" or \"closed\""
+                  }
+               ]
+            },
+            {
+               "MethodName":"service request",
+               "Synopsis":"query the current status of an individual request",
+               "HTTPMethod":"GET",
+               "URI":"requests/:service_request_id.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"service_request_id",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The token ID used to make this call."
+                  },
+                  {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                  }
+               ]
+            },
+            {
+               "MethodName":"request_id from a token",
+               "Synopsis":"Get the request_id from a temporary token. This is unnecessary if the response from creating a service request does not contain a token. This call is only necessary if the response from POST Service Request contains a token",
+               "HTTPMethod":"GET",
+               "URI":"/tokens/:token.xml",
+               "RequiresOAuth":"N",
+               "parameters":[
+                  {
+                     "Name":"token",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"The token ID used to make this call."
+                  },
+                  {
+                     "Name":"jurisdiction_id",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"only required if the endpoint serves multiple jurisdictions"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
