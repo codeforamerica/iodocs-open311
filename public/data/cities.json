@@ -1,0 +1,40 @@
+{
+    "sanfrancisco-ca": {
+      "name": "San Francisco, CA",
+      "jurisdiction_id": "sfgov.org",
+      "servers": {
+        "Test": {
+          "protocol": "https",
+          "base": "open311.sfgov.org",
+          "path": "/dev/V2"
+        },
+        "Production": {
+          "protocol": "https",
+          "base": "open311.sfgov.org",
+          "path": "/dev"
+        }
+      },
+      "format": ["xml"],
+      "auth": "key",
+      "keyParam": "key"
+    },
+    "boston-ma": {
+      "name": "Boston, MA",
+      "jurisdiction_id": "cityofboston.gov",
+      "servers": {
+        "Test": {
+          "protocol": "https",
+          "base": "mayors24.cityofboston.gov:6443",
+          "path": "/open311/v2"
+        },
+        "Production": {
+          "protocol": "https",
+          "base": "mayors24.cityofboston.gov",
+          "path": "/open311/v2"
+        }
+      },
+      "format": ["xml", "json", "html"],
+      "auth": "key",
+      "keyParam": "key"
+    }
+}
