@@ -1,4 +1,12 @@
 {
+    "georeport2": {
+        "name": "GeoReport2 - SeeClickFix",
+        "protocol": "http",
+        "baseURL": "seeclicktest.com",
+        "publicPath": "/open311",
+        "auth": "key",
+        "keyParam": "key"
+    },
     "klout": {
         "name": "Klout API",
         "protocol": "http",
