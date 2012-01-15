@@ -1,9 +1,9 @@
 {
     "georeport2": {
-        "name": "GeoReport2 - SeeClickFix",
+        "name": "GeoReport2 - Code for America",
         "protocol": "http",
-        "baseURL": "seeclicktest.com",
-        "publicPath": "/open311",
+        "baseURL": "cfa311.herokuapp.com",
+        "publicPath": "",
         "auth": "key",
         "keyParam": "key"
     },
